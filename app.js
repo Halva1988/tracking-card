@@ -1,8 +1,8 @@
 async function getData(url = 'data.json') {
-  const response = await fetch(url);
-  const data = await response.json();
+    const response = await fetch(url);
+    const data = await response.json();
 
-  return data
+    return data
 }
 
 class DashboardItem {
@@ -56,7 +56,6 @@ class DashboardItem {
 }
 
 document.addEventListener('DOMContentLoaded', () => {
-
   getData()
     .then(data => {
       const items = data.map(item => new DashboardItem(item));
@@ -74,4 +73,10 @@ document.addEventListener('DOMContentLoaded', () => {
         })
       })
     })
+    .catch(err => {
+      const containerError = document.querySelector('.container--error');
+      const messageError = document.querySelector('.error');
+      messageError.innerText = `Нам не удалось загрузить данные, ошибка!!! ${err}`;
+      containerError.style.display = 'block'
+  })
 })

@@ -191,6 +191,14 @@ body {
     background-color: var(--blue-500);
 }
 
+.container--error {
+    display: none;
+    width: 300px;
+    text-align: right;
+
+    color: var(--red-200);
+}
+
 @media (min-width: 1024px) {
     .dashboard__content {
         grid-template-columns: repeat(4, 1fr);
@@ -230,5 +238,9 @@ body {
 
     .tracking-card__time {
         font-size: 48px;
+    }
+
+    .container--error {
+        width: 700px;
     }
 }
