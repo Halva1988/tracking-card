@@ -55,6 +55,24 @@ class DashboardItem {
   }
 }
 
+class ErrorMessage {
+  constructor(err, container = '.dashboard__content') {
+    this.err = err;
+    this.container = document.querySelector(container);
+
+    this.createMessage();
+  }
+  createMessage() {
+    const message = this.err.toString().replace(/</g, '');
+
+    this.container.insertAdjacentHTML('beforeend', `
+      <div class="container--error">
+        <h2 class="error">Упс, нам не удалось загрузить данные! ${message}</h2>
+      </div>
+    `)
+  }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
   getData()
     .then(data => {
@@ -74,9 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
       })
     })
     .catch(err => {
-      const containerError = document.querySelector('.container--error');
-      const messageError = document.querySelector('.error');
-      messageError.innerText = `Нам не удалось загрузить данные, ошибка!!! ${err}`;
-      containerError.style.display = 'block'
+      const sendMessage = new ErrorMessage(err);
   })
 })

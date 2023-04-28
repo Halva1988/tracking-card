@@ -192,7 +192,6 @@ body {
 }
 
 .container--error {
-    display: none;
     width: 300px;
     text-align: right;
 
@@ -241,6 +240,6 @@ body {
     }
 
     .container--error {
-        width: 700px;
+        width: 690px;
     }
 }
